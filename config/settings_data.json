@@ -1,0 +1,26 @@
+{
+  "current": {
+    "color_schemes": {
+      "default-color-scheme": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_color": "#D0473E",
+          "text_color": "#444",
+          "heading_color": "#111",
+          "border_color": "#EBEBEB",
+          "btn_primary_background": "#111",
+          "btn_primary_color": "#FFF",
+          "btn_primary_hover_background": "#FFF",
+          "btn_primary_hover_color": "#111",
+          "btn_secondary_background": "#FFF",
+          "btn_secondary_color": "#111"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+    }
+  }
+}

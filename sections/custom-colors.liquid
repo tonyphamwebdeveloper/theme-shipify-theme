@@ -1,0 +1,38 @@
+{% schema %}
+{
+  "name": "t:sections.custom-colors.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.custom-colors.settings.paragraph.content__1"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.custom-colors.settings.paragraph.content__2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "color",
+      "name": "t:sections.custom-colors.blocks.color.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.custom-colors.blocks.color.custom_color_name.label"
+        },
+        {
+          "type": "color",
+          "id": "color_code",
+          "label": "t:sections.custom-colors.blocks.color.custom_color_code.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "color_image",
+          "label": "t:sections.custom-colors.blocks.color.custom_color_image.label"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

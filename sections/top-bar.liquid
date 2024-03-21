@@ -1,0 +1,321 @@
+{%- liquid
+  assign section_st = section.settings
+  assign theme_st = settings
+-%}
+
+<div class="topbar border-bottom">
+  <div class="topbar__section">
+    <div class="{{ container }} section-full d-flex flex-wrap justify-content-between align-items-center topbar__section-inner">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign block_st = block.settings
+          -%}
+          {%- case block.type -%}
+            {%- when 'store_information' -%}
+              <div class="topbar-item">
+                {%- if block_st.show_phone -%}
+                  <a href="mailto:{{ theme_st.store_phone }}">
+                    <span>{{ theme_st.store_phone }}</span>
+                  </a>
+                {%- endif -%}
+                {%- if block_st.show_email -%}
+                  <a href="tel:{{ theme_st.store_email }}">
+                    <span>{{ theme_st.store_email }}</span>
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- when 'socials' -%}
+              <div class="topbar-item">
+                {%- render 'social-icons' -%}
+              </div>
+            {%- when 'text' -%}
+              <div class="topbar-item">
+                {%- if block_st.text != blank -%}<div class="topbar-message">{{- block_st.text -}}</div>{%- endif -%}
+              </div>
+            {%- when 'text_slider' -%}
+              <div class="topbar-item">
+                <slide-section
+                  class="swiper bls__swiper"
+                  data-section-id="{{ section.id }}"
+                  data-effect="fade"
+                  data-loop="true"
+                  data-speed="800"
+                  data-slideshow="1"
+                  data-mobile="1"
+                  data-tablet="1"
+                  data-desktop="1"
+                >
+                  <div class="swiper-wrapper">
+                    {%- if block_st.text1 != blank -%}<div class="swiper-slide">{{- block_st.text1 -}}</div>{%- endif -%}
+                    {%- if block_st.text2 != blank -%}<div class="swiper-slide">{{- block_st.text2 -}}</div>{%- endif -%}
+                    {%- if block_st.text3 != blank -%}<div class="swiper-slide">{{- block_st.text3 -}}</div>{%- endif -%}
+                  </div>
+                  <div class="swiper-arrow swiper-button-prev">
+                    <i class="icon-chevron-left"></i>
+                  </div>
+                  <div class="swiper-arrow swiper-button-next">
+                    <i class="icon-chevron-right"></i>
+                  </div>
+              </div>
+            {%- when 'link_list' -%}
+              <div class="topbar-item">
+                {%- if block_st.menu_link != blank -%}
+                  <ul class="linklist">
+                    {%- for link in block_st.menu_link.links -%}
+                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            {%- when 'cur_lang' -%}
+              <div class="topbar-item">
+                {%- if block_st.show_our_store and theme_st.store_page and theme_st.store_address -%}
+                  <a
+                    href="{{ pages[theme_st.store_page].url | default: '#' }}"
+                    aria-label="Link detail"
+                    class="py-5"
+                  >
+                    {%- if theme_st.store_address != blank -%}
+                      <span>{{ theme_st.store_address }}</span>
+                    {%- else -%}
+                      <span>{{ pages[theme_st.store_page].title }}</span>
+                    {%- endif -%}
+                  </a>
+                {%- endif -%}
+                {%- if block_st.show_currency -%}
+                  {%- render 'country-switcher' -%}
+                {%- endif -%}
+                {%- if block_st.show_language -%}
+                  {%- render 'language-switcher' -%}
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.top-bar.name",
+  "class": "section-top-bar",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.section_width.container.label"
+        },
+        {
+          "value": "fluid_container",
+          "label": "t:sections.all.section_width.fluid_container.label"
+        },
+        {
+          "value": "stretch_width",
+          "label": "t:sections.all.section_width.stretch_width.label"
+        },
+        {
+          "value": "full_width",
+          "label": "t:sections.all.section_width.full_width.label"
+        }
+      ],
+      "default": "stretch_width",
+      "label": "t:sections.all.section_width.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.color_scheme.label",
+      "default": "default-color-scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile",
+      "default": true,
+      "label": "t:sections.top-bar.settings.show_mobile.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator_line",
+      "default": true,
+      "label": "t:sections.top-bar.settings.show_separator_line.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.content_setting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "t:sections.all.content_setting.uppercase.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "label": "t:sections.all.content_setting.font_size.label",
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "options": [
+        {
+          "value": "body_weight",
+          "label": "t:sections.all.content_setting.font_weight.body_weight.label"
+        },
+        {
+          "value": "heading_weight",
+          "label": "t:sections.all.content_setting.font_weight.heading_weight.label"
+        },
+        {
+          "value": "subheading_weight",
+          "label": "t:sections.all.content_setting.font_weight.subheading_weight.label"
+        }
+      ],
+      "default": "body_weight",
+      "label": "t:sections.all.content_setting.font_weight.body_weight.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section_padding.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.section_padding.top.label",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.section_padding.bottom.label",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "store_information",
+      "name": "t:sections.top-bar.blocks.store_information.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_email",
+          "label": "t:sections.top-bar.blocks.store_information.settings.show_email.label",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_phone",
+          "label": "t:sections.top-bar.blocks.store_information.settings.show_phone.label",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "socials",
+      "name": "t:sections.top-bar.blocks.social_link.name",
+      "limit": 1
+    },
+    {
+      "type": "text",
+      "name": "t:sections.top-bar.blocks.text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:sections.top-bar.blocks.text.name"
+        }
+      ]
+    },
+    {
+      "type": "text_slider",
+      "name": "t:sections.top-bar.blocks.text_slider.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text1",
+          "label": "t:sections.top-bar.blocks.text_slider.settings.text_1.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text2",
+          "label": "t:sections.top-bar.blocks.text_slider.settings.text_2.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text3",
+          "label": "t:sections.top-bar.blocks.text_slider.settings.text_3.label"
+        },
+        {
+          "type": "range",
+          "id": "change_every",
+          "min": 3,
+          "max": 6,
+          "step": 1,
+          "label": "t:sections.top-bar.blocks.text_slider.settings.change_every.label",
+          "unit": "s",
+          "default": 3
+        }
+      ]
+    },
+    {
+      "type": "cur_lang",
+      "name": "t:sections.top-bar.blocks.cur_lang.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_currency",
+          "label": "t:sections.top-bar.blocks.cur_lang.settings.show_currency.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_language",
+          "label": "t:sections.top-bar.blocks.cur_lang.settings.show_language.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_our_store",
+          "label": "t:sections.top-bar.blocks.cur_lang.settings.show_our_store.label",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "t:sections.top-bar.blocks.link_list.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu_link",
+          "label": "t:sections.top-bar.blocks.link_list.settings.menu.label"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

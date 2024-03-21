@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "divider_8q8FYh": {
+      "type": "divider",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "remove_default_spacing": false
+      }
+    },
+    "scrolling_text_7jXTKU": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_9NGLKe": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>Free delivery and returns from $120<\/p>"
+          }
+        },
+        "scrolling_text_YhB7TT": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<p>Free delivery and returns from $120<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_9NGLKe",
+        "scrolling_text_YhB7TT"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "direction": "left",
+        "icon_between_item": "unset",
+        "speed": 5,
+        "space_between_text": 30,
+        "font_size": 14,
+        "font_weight": "body_weight",
+        "uppercase": true,
+        "use_heading_font": true,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "remove_default_spacing": false
+      }
+    }
+  },
+  "order": [
+    "divider_8q8FYh",
+    "scrolling_text_7jXTKU"
+  ]
+}

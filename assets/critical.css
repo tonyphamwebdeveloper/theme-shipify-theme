@@ -1,0 +1,111 @@
+body {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.gap {
+  gap: var(--gap, 3rem);
+}
+.gradient {
+  background: var(--color-background);
+  background: var(--gradient-background);
+  background-attachment: fixed;
+}
+.section {
+  padding-top: var(--section-pt);
+  padding-bottom: var(--section-pb);
+}
+.fs-custom {
+  font-size: var(--font-size);
+}
+.mb-custom {
+  margin-bottom: var(--space-bottom);
+}
+.gap-custom {
+  gap: var(--gap);
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.list-none {
+  list-style-type: none;
+}
+.no-underline {
+  text-decoration-line: none;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.top-center {
+  justify-content: center;
+}
+.top-right {
+  justify-content: flex-end;
+}
+.middle-left {
+  align-items: center;
+}
+.middle-center {
+  align-items: center;
+  justify-content: center;
+}
+.middle-right {
+  align-items: center;
+  justify-content: flex-end;
+}
+.bottom-left {
+  align-items: flex-end;
+}
+.bottom-center {
+  align-items: flex-end;
+  justify-content: center;
+}
+.bottom-right {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.s__content-sub-heading {
+  font-size: var(--font-size);
+  margin-bottom: var(--spacing);
+}
+.s__content-heading {
+  font-size: var(--font-size);
+  margin-bottom: var(--spacing);
+}
+.s__content-des {
+  font-size: var(--font-size);
+  margin-bottom: var(--spacing);
+}
+[direction="rtl"] {
+  direction: rtl;
+}
